@@ -1,6 +1,10 @@
 from bottle import get, run, static_file
 import json
 import mysql.connector
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 from g import (
     DATABASE_CONFIG
 )
