@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Customized (by me):
-g.py
+.g
 
 # Distribution / packaging
 .Python
