@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="./js/booking.js" defer></script>
+    <title>Dara coaching</title>
+</head>
+<body>
+    <h1>Customer</h1>
+
+    <h2>Booking</h2>
+    <div id="customers"></div>
+    <!-- <form method="post" action="api-create-customer" onsubmit="return false">
+            <label for="">First name</label><br>
+            <input name="first_name" type="text"><br>
+            <label for="">Last name</label><br>
+            <input name="last_name" type="text"><br>
+            <label for="">Phone</label><br>
+            <input name="phone" type="text"><br>
+            <label for="">email</label><br>
+            <input name="email" type="email"><br>
+            <label for="selector"> participants <br>
+                <select name="participants" id="selector"> 
+                </select>
+              </label>
+            <label for="">suject</label><br>
+            <input name="subject" type="text"><br>
+           
+
+            <input type="submit" value="Submit">
+    </form> -->
+    
+    
+
+    <form onsubmit="create_customer(); return false">
+            <label for="">First name</label><br>
+            <input name="first_name" type="text"><br>
+            <label for="">Last name</label><br>
+            <input name="last_name" type="text"><br>
+            <label for="">Phone</label><br>
+            <input name="phone" type="text"><br>
+            <label for="">email</label><br>
+            <input name="email" type="email"><br>
+            <br>
+            <div>
+                <label for="selector"> participants <br>
+                    <select name="participants" id="selector-participants"> 
+                    </select>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label for="selector"> Booking options <br>
+                    <select name="fk_bkg_option_id" id="selector-options"> 
+                    </select>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label for="selector"> Avalable times <br>
+                    <select name="fk_bkg_time_id" id="selector-times"> 
+                    </select>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label for="selector"> Avalable dates <br>
+                    <select name="fk_bkg_date_id" id="selector-dates"> 
+                    </select>
+                </label>
+            </div>
+            <br>
+            
+            <label for="">suject</label><br>
+            <input name="subject" type="text"><br>
+
+            <br>
+            <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
