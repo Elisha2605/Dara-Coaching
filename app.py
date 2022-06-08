@@ -34,6 +34,13 @@ from api.PUT import (
 from api.DELETE import (
     delete_customer_DELETE
 )
+from api.STORED_PROCEDURES import (
+    get_all_bookings,
+    get_customer_bookings
+)
+from api.test import (
+    stored_procedure
+)
 
 
 ##########################
