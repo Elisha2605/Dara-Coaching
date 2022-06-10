@@ -31,7 +31,7 @@ from api.POST import (
 from api.PUT import (
     update_customer_PUT
 )
-from api.DELETE import (
+from api.DEL import (
     delete_customer_DELETE
 )
 from api.STORED_PROCEDURES import (

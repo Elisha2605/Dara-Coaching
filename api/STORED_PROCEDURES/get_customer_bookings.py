@@ -21,7 +21,7 @@ def _():
         
 
         ############ GET / CUSTOMER BOOKINGS ###########
-        args = ['Elisha']
+        args = ['Amandax']
         cursor.callproc('get_customer_bookings', args)
         for result in cursor.stored_results():
             stored_customer_bookings = result.fetchall()

@@ -6,6 +6,7 @@ from g import (
 )
 
 
+
 ################################################################### 
 # FETCH ALL BOOKING DATA   
 ################################################################### 
@@ -47,7 +48,8 @@ def _():
             participants=participants, 
             booking_dates=booking_dates, 
             booking_options=booking_options,
-            booking_times=booking_times
+            booking_times=booking_times,
+            x=x
             ), default=str)
     except Exception as ex:
         print(ex)

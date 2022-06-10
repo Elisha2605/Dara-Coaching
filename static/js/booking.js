@@ -50,6 +50,7 @@ async function create_customer() {
         alert("Could not connect")
         return
     }
+    console.log(form);
 }
 
 // UPDATE CUSTOMER
