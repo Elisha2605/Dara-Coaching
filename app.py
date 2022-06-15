@@ -14,7 +14,8 @@ from g import (
 #------>  Routes         #
 ##########################
 from routes import (
-    index
+    index,
+    meeting
 )
 
 
@@ -26,7 +27,8 @@ from api.GET import (
     fetch_booking_data_GET
 )
 from api.POST import (
-    create_customer_booking_POST
+    create_customer_booking_POST,
+    create_meeting_POST
 )
 from api.PUT import (
     update_customer_PUT

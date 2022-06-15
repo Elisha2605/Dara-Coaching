@@ -49,7 +49,6 @@ def _():
             booking_dates=booking_dates, 
             booking_options=booking_options,
             booking_times=booking_times,
-            x=x
             ), default=str)
     except Exception as ex:
         print(ex)

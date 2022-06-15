@@ -112,6 +112,7 @@ def _():
 
     response.content_type = 'application/json; charset=UTF-8'
     return json.dumps(dict(
+                            server_message="SUCCESS",
                             counter_customer=counter_customer, 
                             counter_booking=counter_booking
                          ))
