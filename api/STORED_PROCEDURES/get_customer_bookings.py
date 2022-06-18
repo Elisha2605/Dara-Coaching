@@ -8,7 +8,7 @@ from g import (
 
 
 ################################################################### 
-# GET CUSTOMER BOOKINGS  
+# GET CUSTOMER BOOKINGS BY name
 ################################################################### 
 @get('/api-get-customer-bookings')
 def _():
@@ -21,7 +21,7 @@ def _():
         
 
         ############ GET / CUSTOMER BOOKINGS ###########
-        args = ['Amandax']
+        args = ['Elisha']
         cursor.callproc('get_customer_bookings', args)
         for result in cursor.stored_results():
             stored_customer_bookings = result.fetchall()

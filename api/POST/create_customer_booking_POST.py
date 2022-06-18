@@ -97,23 +97,24 @@ def _():
         # INSERT INTO bookings TABLE
         ###################################################################################################################
         sql_insert_booking =    """ 
-                                    INSERT INTO bookings (fk_customer_id, fk_bkg_option_id, fk_bkg_time_id, fk_bkg_date_id)
-                                        VALUES(LAST_INSERT_ID(), %s, %s, %s)
+                                    INSERT INTO bookings (fk_customer_id, fk_bkg_option_id, fk_bkg_time_id, fk_bkg_date_id, is_active)
+                                        VALUES(LAST_INSERT_ID(), %s, %s, %s, %s)
                                 """
-        booking=(fk_booking_option_id, fk_booking_time_id, fk_booking_date_id)
+        booking=(fk_booking_option_id, fk_booking_time_id, fk_booking_date_id, 0)
         cursor.execute(sql_insert_booking, booking)
         counter_booking = cursor.rowcount
         print("row counter-booking :", counter_booking)
         db_connection.commit()  
 
-       
-    except Exception as ex:
-        print(ex)
-
-    response.content_type = 'application/json; charset=UTF-8'
-    return json.dumps(dict(
+        response.content_type = 'application/json; charset=UTF-8'
+        return json.dumps(dict(
                             server_message="SUCCESS",
                             counter_customer=counter_customer, 
                             counter_booking=counter_booking
                          ))
+       
+    except Exception as ex:
+        print(ex)
+        return ('Uuups!!! Something went wrong')
+   
 

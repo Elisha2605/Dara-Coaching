@@ -24,12 +24,18 @@ from routes import (
 ##########################
 from api.GET import (
     fetch_customers_GET,
-    fetch_booking_data_GET
+    fetch_booking_data_GET,
+    fetch_meetings_GET,
+    fetch_exercises_GET
 )
 from api.POST import (
-    create_customer_booking_POST,
-    create_meeting_POST
-)
+    create_customer_booking_POST,   
+    create_meeting_POST,
+    create_exercise_POST,
+    crete_meeting_exercises_POST,
+    create_meeting_action_plans_POST,
+    create_payment_POST
+)   
 from api.PUT import (
     update_customer_PUT
 )

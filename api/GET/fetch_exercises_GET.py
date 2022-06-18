@@ -1,4 +1,4 @@
-from bottle import get, response, view
+from bottle import get, response
 import json
 import mysql.connector
 from g import (
@@ -6,12 +6,7 @@ from g import (
 )
 
 
-
-################################################################### 
-# MEETING    
-################################################################### 
-@get('/meeting')
-@view('meeting')
+@get('/api-fetch-exercises')
 def _():
 
     try:
@@ -28,14 +23,9 @@ def _():
 
         print(exercises)
 
-        return dict(exercises=exercises)
+        response.content_type = 'application/json; charset=UTF-8'
+        return json.dumps(dict(exercises=exercises))
 
     except Exception as ex:
         print(ex)
         return {'info': 'Upps... something went wrong'}
-
-
-
-
-
-

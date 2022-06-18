@@ -7,9 +7,41 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="./js/meeting.js" defer></script>
     <title>Dara coaching</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Meeting</h1>
-    <div id="meetings"></div>
+
+    <form>
+        <div id="meetings">
+            
+        </div>
+    </form> 
+
+    <div class="filter">
+        Exercises
+
+        <div id="exercises">
+            <ul>
+                % for ex in exercises:
+                <li onclick="create_exercise()">
+                    <p id="{{ex["exercise_id"]}}" value="{{ex["name"]}}" name="exercise">{{ex["name"]}}</p>
+                </li>
+                % end
+            </ul>
+        </div>
+      </div>
+
 </body>
 </html>

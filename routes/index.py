@@ -10,3 +10,5 @@ from bottle import get, view
 @view('index')
 def _():
     return
+
+
