@@ -1,6 +1,9 @@
-from bottle import get, view
-
-
+from bottle import get, view, response
+import json
+import mysql.connector
+from g import (
+    DATABASE_CONFIG
+)
 
 
 ################################################################### 
@@ -10,5 +13,3 @@ from bottle import get, view
 @view('index')
 def _():
     return
-
-

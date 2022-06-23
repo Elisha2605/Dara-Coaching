@@ -15,7 +15,8 @@ from g import (
 ##########################
 from routes import (
     index,
-    meeting
+    meeting,
+    calendar
 )
 
 

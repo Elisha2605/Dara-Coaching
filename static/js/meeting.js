@@ -37,3 +37,4 @@ async function create_exercise() {
         return
     }
 }
+
