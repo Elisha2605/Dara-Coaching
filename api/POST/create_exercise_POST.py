@@ -6,6 +6,11 @@ from g import (
     DATABASE_CONFIG
 )
 
+
+
+################################################################### 
+# CREATE EXERCCISE   
+################################################################### 
 @post('/api-create-exercise')
 def _():
 
@@ -34,7 +39,7 @@ def _():
                                 """
         cursor.execute(sql_insert_exercise)
         counter_exercise = cursor.rowcount
-        print(counter_exercise)
+        print("counter_exercise: ", counter_exercise)
         db_connection.commit()
 
         response.status=200

@@ -36,12 +36,20 @@ def _():
 
         events = []
         for key in booking_dates:
-            date = key['avalable_dates']
+            date = key['available_dates']
             events_dict = dict(title="hello", start = date)
             events.append(events_dict)
+
         
+        x = {
+            "title": "hello",
+            "description": "me I don't know"
+        }
         response.content_type = 'application/json; charset=UTF-8'
-        return json.dumps(events, default=str)
+        return json.dumps(dict(
+            events=events,
+            x=x
+            ), default=str)
 
     except Exception as ex:
         print(ex)

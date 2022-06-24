@@ -23,32 +23,34 @@ def _():
         cursor.execute(sql_fetchAll_customer)
         participants = cursor.fetchall()
 
-        sql_fetchAll_booking_options =  """ 
-                                            SELECT bkg_option_id, options, prices.duration, prices.price
-                                            FROM booking_options
-                                            JOIN prices ON booking_options.fk_price_id = prices.price_id
-                                        """
+        sql_fetchAll_booking_options =      """ 
+                                                SELECT bkg_option_id, options, prices.duration, prices.price
+                                                FROM booking_options
+                                                JOIN prices ON booking_options.fk_price_id = prices.price_id
+                                            """
         cursor.execute(sql_fetchAll_booking_options)
         booking_options = cursor.fetchall()
 
-        sql_fetchAll_booking_dates =    """ 
-                                            SELECT * FROM booking_dates 
-                                        """
-        cursor.execute(sql_fetchAll_booking_dates)
-        booking_dates = cursor.fetchall()
+        sql_fetchAll_booking_date_time =    """ 
+                                                SELECT bkg_date_time_id, booking_dates.available_dates, available_times
+                                                FROM booking_date_times
+                                                JOIN booking_dates ON booking_date_times.fk_bkg_date_id = booking_dates.bkg_date_id 
+                                            """
+        cursor.execute(sql_fetchAll_booking_date_time)
+        booking_date_times = cursor.fetchall()
 
-        sql_fetchAll_booking_times =    """ 
-                                            SELECT * FROM booking_times 
-                                        """
-        cursor.execute(sql_fetchAll_booking_times)
-        booking_times = cursor.fetchall()
+        # sql_fetchAll_booking_times =    """ 
+        #                                     SELECT * FROM booking_times 
+        #                                 """
+        # cursor.execute(sql_fetchAll_booking_times)
+        # booking_times = cursor.fetchall()
         
         response.content_type = 'application/json; charset=UTF-8'
         return json.dumps(dict(
             participants=participants, 
-            booking_dates=booking_dates, 
             booking_options=booking_options,
-            booking_times=booking_times,
+            booking_date_times=booking_date_times, 
+            # booking_times=booking_times,
             ), default=str)
     except Exception as ex:
         print(ex)

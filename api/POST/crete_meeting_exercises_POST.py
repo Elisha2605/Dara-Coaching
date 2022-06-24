@@ -47,7 +47,7 @@ def _(fk_meeting_id):
                                             """
         cursor.execute(sql_insert_into_meeting_exercise, meeting_exercises)
         counter_meeting_exercise = cursor.rowcount
-        print(counter_meeting_exercise)
+        print("counter_meeting_exercise: ", counter_meeting_exercise)
         db_connection.commit()
         
         print('#'*100)

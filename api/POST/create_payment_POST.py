@@ -54,7 +54,7 @@ def _(customer_id):
         payment = (customer_id, fk_meeting_id, fk_booking_id, date, is_payed)
         cursor.execute(sql_insert_into_payment, payment)
         counter_payment = cursor.rowcount
-        print("counter_payment :", counter_payment)
+        print("counter_payment:", counter_payment)
         db_connection.commit()
 
 

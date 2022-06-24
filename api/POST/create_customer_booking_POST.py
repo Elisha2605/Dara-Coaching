@@ -24,10 +24,10 @@ def _():
 
         # BOOKING INFO - REQUESTS
         booking_option = request.forms.get('fk_bkg_option_id')
-        booking_time = request.forms.get('fk_bkg_time_id')
         booking_date = request.forms.get('fk_bkg_date_id')
+        booking_time = request.forms.get('fk_bkg_time_id')
 
-        print("from browser :", first_name)
+        print("from browser: ", first_name)
 
 
        
@@ -57,29 +57,21 @@ def _():
         for col in booking_options:
             if str(booking_option) in str(col["options"]):
                 fk_booking_option_id = col["bkg_option_id"]
-                
-
-        #-> FETCH booking (times)
-        ##########################
-        sql_fetchAll_booking_times =    """ 
-                                            SELECT * FROM booking_times 
-                                        """
-        cursor.execute(sql_fetchAll_booking_times)
-        booking_times = cursor.fetchall()
-        for col in booking_times:
-            if str(booking_time) in str(col["avalable_times"]):
-                fk_booking_time_id = col["bkg_time_id"]
 
         #-> FETCH booking (dates)
         ##########################
-        sql_fetchAll_booking_dates =    """ 
-                                            SELECT * FROM booking_dates 
-                                        """
-        cursor.execute(sql_fetchAll_booking_dates)
-        booking_dates = cursor.fetchall()
-        for col in booking_dates:
-            if str(booking_date) in str(col["avalable_dates"]):
-                fk_booking_date_id = col["bkg_date_id"]
+        sql_fetchAll_booking_date_times =    """ 
+                                                SELECT bkg_date_time_id, booking_dates.available_dates, available_times
+                                                FROM booking_date_times
+                                                JOIN booking_dates ON booking_date_times.fk_bkg_date_id = booking_dates.bkg_date_id  
+                                             """
+
+        cursor.execute(sql_fetchAll_booking_date_times)
+        booking_date_times = cursor.fetchall()
+        for col in booking_date_times:
+            if str(booking_date) in str(col["available_dates"]) and str(booking_time) in str(col["available_times"]):
+                fk_bkg_date_time_id = col["bkg_date_time_id"]
+                print(fk_bkg_date_time_id)
 
 
         # INSERT INTO customers TABLE
@@ -97,21 +89,23 @@ def _():
         # INSERT INTO bookings TABLE
         ###################################################################################################################
         sql_insert_booking =    """ 
-                                    INSERT INTO bookings (fk_customer_id, fk_bkg_option_id, fk_bkg_time_id, fk_bkg_date_id, is_active)
-                                        VALUES(LAST_INSERT_ID(), %s, %s, %s, %s)
+                                    INSERT INTO bookings (fk_customer_id, fk_bkg_option_id, fk_bkg_date_time_id, is_active)
+                                        VALUES(LAST_INSERT_ID(), %s, %s, %s)
                                 """
-        booking=(fk_booking_option_id, fk_booking_time_id, fk_booking_date_id, 0)
+        booking=(fk_booking_option_id, fk_bkg_date_time_id, 0)
         cursor.execute(sql_insert_booking, booking)
         counter_booking = cursor.rowcount
         print("row counter-booking :", counter_booking)
         db_connection.commit()  
+    
+
 
         response.content_type = 'application/json; charset=UTF-8'
         return json.dumps(dict(
                             server_message="SUCCESS",
                             counter_customer=counter_customer, 
                             counter_booking=counter_booking
-                         ))
+                         ), default=str)
        
     except Exception as ex:
         print(ex)
