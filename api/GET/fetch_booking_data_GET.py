@@ -31,26 +31,34 @@ def _():
         cursor.execute(sql_fetchAll_booking_options)
         booking_options = cursor.fetchall()
 
-        sql_fetchAll_booking_date_time =    """ 
-                                                SELECT bkg_date_time_id, booking_dates.available_dates, available_times
-                                                FROM booking_date_times
-                                                JOIN booking_dates ON booking_date_times.fk_bkg_date_id = booking_dates.bkg_date_id 
-                                            """
-        cursor.execute(sql_fetchAll_booking_date_time)
+        # sql_fetchAll_booking_date_time =    """ 
+        #                                         SELECT bkg_date_time_id, booking_dates.available_dates, available_times
+        #                                         FROM booking_date_times
+        #                                         JOIN booking_dates ON booking_date_times.fk_bkg_date_id = booking_dates.bkg_date_id 
+        #                                     """
+        # cursor.execute(sql_fetchAll_booking_date_time)
+        # booking_date_times = cursor.fetchall()
+
+        sql_fetchAll_booking_date_times =    """ 
+                                                SELECT * FROM booking_date_times 
+                                             """
+        cursor.execute(sql_fetchAll_booking_date_times)
         booking_date_times = cursor.fetchall()
 
-        # sql_fetchAll_booking_times =    """ 
-        #                                     SELECT * FROM booking_times 
-        #                                 """
-        # cursor.execute(sql_fetchAll_booking_times)
-        # booking_times = cursor.fetchall()
+        sql_fetchAll_booking_dates_with_times =    """ 
+                                                        SELECT DISTINCT booking_dates.available_dates 
+                                                        FROM booking_date_times
+                                                        INNER JOIN booking_dates ON booking_date_times.fk_bkg_date_id = booking_dates.bkg_date_id 
+                                                   """
+        cursor.execute(sql_fetchAll_booking_dates_with_times)
+        booking_dates = cursor.fetchall()
         
         response.content_type = 'application/json; charset=UTF-8'
         return json.dumps(dict(
             participants=participants, 
             booking_options=booking_options,
-            booking_date_times=booking_date_times, 
-            # booking_times=booking_times,
+            booking_date_times=booking_date_times,
+            booking_dates=booking_dates
             ), default=str)
     except Exception as ex:
         print(ex)

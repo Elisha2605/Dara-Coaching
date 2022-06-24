@@ -24,14 +24,17 @@ fetch('/api-fetch-booking_data')
         newOp.append(element.options)
         optionsSelector.insertAdjacentElement("afterbegin", newOp)
     })
+    data.booking_dates.forEach(element => {
+        console.log(element);
+        const newOp = document.createElement("option");
+        newOp.append(element.available_dates)
+        datesSelector.insertAdjacentElement("afterbegin", newOp)
+    })
     data.booking_date_times.forEach(element => {
         console.log(element);
-        const newOp1 = document.createElement("option");
-        const newOp2 = document.createElement("option");
-        newOp1.append(element.available_dates)
-        newOp2.append(element.available_times)
-        datesSelector.insertAdjacentElement("afterbegin", newOp1)
-        timesSelector.insertAdjacentElement("afterbegin", newOp2)
+        const newOp = document.createElement("option");
+        newOp.append(element.available_times)
+        timesSelector.insertAdjacentElement("afterbegin", newOp)
     })
 })
 
